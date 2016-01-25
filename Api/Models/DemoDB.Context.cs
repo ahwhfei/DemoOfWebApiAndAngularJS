@@ -18,6 +18,8 @@ namespace Api.Models
         public DemoEntities()
             : base("name=DemoEntities")
         {
+            this.Configuration.ProxyCreationEnabled = false;
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -9,9 +9,11 @@
 
 namespace Api.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+
+    [JsonObject(IsReference = true)]
     public partial class Enrollment
     {
         public int EnrollmentID { get; set; }
