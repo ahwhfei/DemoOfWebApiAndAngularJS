@@ -21,16 +21,19 @@ namespace Api.Controllers
         public IEnumerable<Student> GetStudents()
         {
             //return db.Students;
-            return db.Students.Include(p => p.Enrollments.Select(y => y.Course)).AsEnumerable();
+            return db.Students
+                    .Include(p => p.Enrollments.Select(y => y.Course))
+                    .AsEnumerable();
         }
 
         // GET: api/Students/5
         [ResponseType(typeof(Student))]
         public async Task<IHttpActionResult> GetStudent(int id)
         {
-            // db.Configuration.ProxyCreationEnabled = false;
-            Student student = await db.Students.FindAsync(id);
-            
+            var student = db.Students
+                            .Include(p => p.Enrollments.Select(y => y.Course))
+                            .SingleOrDefault(x => x.ID == id);
+
             if (student == null)
             {
                 return NotFound();
