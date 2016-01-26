@@ -10,9 +10,11 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Api.Models;
+using System.Web.Http.Cors;
 
 namespace Api.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class StudentsController : ApiController
     {
         private DemoEntities db = new DemoEntities();
